@@ -43,4 +43,25 @@ describe('useContacts hook', () => {
     });
     expect(result.current.contacts).toContainEqual(editedContact);
   });
+
+  it('should delete a contact and update the state', async () => {
+    const { result } = renderHook(() => useContacts());
+    const existingContact = {
+      name: 'Existing Contact', // Make sure this name is unique
+      phone: '222-222-2222',
+      email: 'existing@example.com',
+      age: 50,
+    };
+
+    const expectedContact = { ...existingContact, id: expect.any(String) };
+    act(() => {
+      result.current.addContact(expectedContact);
+    });
+    expect(result.current.contacts).toContainEqual(expectedContact);
+
+    act(() => {
+      result.current.deleteContact(expectedContact.id);
+    });
+    expect(result.current.contacts).not.toContainEqual(expectedContact);
+  });
 });
