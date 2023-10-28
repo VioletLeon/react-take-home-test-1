@@ -10,41 +10,62 @@ import { generateUUID } from '../util/guid';
 
 const useContacts = () => {
   const [contacts, setContacts] = useState<IContact[]>([]);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchContacts = async () => {
-      const contacts = await apiFetchAllContacts();
-      setContacts(contacts);
+      try {
+        const fetchedContacts = await apiFetchAllContacts();
+        setContacts([...fetchedContacts]);
+      } catch (error) {
+        setError('Error fetching contacts');
+      }
     };
 
     fetchContacts();
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      setError('');
+    }
+  }, [error]);
+
+  useEffect(() => {}, [contacts]);
+
   const addContact = async (newContact: IContact) => {
     newContact.id = generateUUID();
-    setContacts([...contacts, newContact]);
-    await apiAddContact(newContact);
+    try {
+      await apiAddContact(newContact);
+      setContacts([...contacts, newContact]);
+    } catch (error) {
+      setError('Error adding contact');
+    }
   };
 
   const editContact = async (updatedContact: IContact) => {
     const index = contacts.findIndex((x) => x.id === updatedContact.id);
     const newContacts = [...contacts];
     newContacts[index] = updatedContact;
-    setContacts(newContacts);
-    await apiUpdateContact(updatedContact);
-  };
-
-  const getContact = async (id: string) => {
-    const index = contacts.findIndex((x) => x.id === id);
-    return contacts[index];
+    try {
+      await apiUpdateContact(updatedContact);
+      setContacts(newContacts);
+    } catch (error) {
+      setError('Error editing contact');
+    }
   };
 
   const deleteContact = async (id: string) => {
-    setContacts(contacts.filter((x) => x.id !== id));
-    await apiDeleteContact(id);
+    try {
+      await apiDeleteContact(id);
+      setContacts(contacts.filter((x) => x.id !== id));
+    } catch (error) {
+      setError('Error deleting contact');
+    }
   };
 
-  return { contacts, addContact, getContact, editContact, deleteContact };
+  return { contacts, error, addContact, editContact, deleteContact };
 };
 
 export default useContacts;
