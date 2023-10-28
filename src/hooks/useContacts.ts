@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   apiAddContact,
   apiDeleteContact,
@@ -32,7 +32,9 @@ const useContacts = () => {
     }
   }, [error]);
 
-  useEffect(() => {}, [contacts]);
+  const sortedContacts = useMemo(() => {
+    return contacts.slice().sort((a, b) => a.name.localeCompare(b.name));
+  }, [contacts]);
 
   const addContact = async (newContact: IContact) => {
     newContact.id = generateUUID();
@@ -65,7 +67,13 @@ const useContacts = () => {
     }
   };
 
-  return { contacts, error, addContact, editContact, deleteContact };
+  return {
+    contacts: sortedContacts,
+    error,
+    addContact,
+    editContact,
+    deleteContact,
+  };
 };
 
 export default useContacts;
