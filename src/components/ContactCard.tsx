@@ -1,4 +1,4 @@
-import { IContact } from '../data/contacts';
+import type { IContact } from '../data/contacts';
 import { Button, Card, Image } from 'react-bootstrap';
 import { useState } from 'react';
 import ContactFormModal from './ContactFormModal';

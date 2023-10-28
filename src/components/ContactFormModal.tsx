@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { IContact } from '../data/contacts';
+import type { IContact } from '../data/contacts';
 
 type ContactFormState = Omit<IContact, 'id'> & { birthday?: Date };
 type ContactFormProps = {

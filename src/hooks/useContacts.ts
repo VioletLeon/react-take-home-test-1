@@ -4,8 +4,8 @@ import {
   apiDeleteContact,
   apiFetchAllContacts,
   apiUpdateContact,
-  IContact,
 } from '../data/contacts';
+import type { IContact } from '../data/contacts';
 import { generateUUID } from '../util/guid';
 
 const useContacts = () => {

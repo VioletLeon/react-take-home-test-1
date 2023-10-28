@@ -1,5 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { IContact } from '../data/contacts';
+import type { IContact } from '../data/contacts';
 import ContactCard from './ContactCard';
 
 type Props = {
