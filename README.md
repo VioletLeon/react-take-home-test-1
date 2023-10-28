@@ -25,18 +25,18 @@ You will be creating a single page application for managing contacts, starting f
 
 ### Requirements
 
-- ``Users should be able to *add* new contacts.``
-- ``Each contact should have an *Universally Unique IDentifier* (provided function)``
-- ``Home page should display a collection of contacts with their details.``
-- ``Details for each contact should be:``
-  - ``Name``
-  - ``Phone number``
-  - ``Email``
-  - ``Age``
-- ``Contacts should be ordered by Name.``
-- ``Users should be able to *edit* a contact from the collection``
-- ``Users should be able to *delete* a contact from the collection``
-- ``Changes to the collection of contacts should persist``
+- ~~Users should be able to *add* new contacts.~~
+- ~~Each contact should have an *Universally Unique IDentifier* (provided function)~~
+- ~~Home page should display a collection of contacts with their details.~~
+- ~~Details for each contact should be:~~
+  - ~~Name~~
+  - ~~Phone number~~
+  - ~~Email~~
+  - ~~Age~~
+- ~~Contacts should be ordered by Name.~~
+- ~~Users should be able to *edit* a contact from the collection~~
+- ~~Users should be able to *delete* a contact from the collection~~
+- ~~Changes to the collection of contacts should persist~~
 
 ### Considerations
 
