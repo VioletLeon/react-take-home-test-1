@@ -122,7 +122,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
       const phoneRegex = /^\d{10}$/;
       const isValidPhone = phoneRegex.test(formData.phone);
       if (!isValidPhone) {
-        setValidationErrors('Phone is invalid');
+        setValidationErrors('Phone is invalid, must be 10 digits');
         setSaveLoading(false);
         return false;
       }
