@@ -41,6 +41,9 @@ const ContactCard = ({ contact, deleteContact, editContact }: Props) => {
         <Card.Text>{contact.age && `Age: ${contact.age}`}</Card.Text>
         <Button
           variant="danger"
+          style={{
+            marginRight: '1rem',
+          }}
           disabled={deleteLoading}
           onClick={async () => {
             setDeleteLoading(true);

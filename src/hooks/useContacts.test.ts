@@ -17,8 +17,8 @@ describe('useContacts hook', () => {
     };
     const expectedContact = { ...newContact, id: expect.any(String) };
 
-    act(() => {
-      result.current.addContact(expectedContact);
+    await act(async () => {
+      await result.current.addContact(expectedContact);
     });
     expect(result.current.contacts).toContainEqual(expectedContact);
   });
@@ -33,13 +33,13 @@ describe('useContacts hook', () => {
       age: 50,
     };
     const expectedContact = { ...existingContact, id: expect.any(String) };
-    act(() => {
-      result.current.addContact(expectedContact);
+    await act(async () => {
+      await result.current.addContact(expectedContact);
     });
 
     const editedContact = { ...expectedContact, name: 'Edited Contact' };
-    act(() => {
-      result.current.editContact(editedContact);
+    await act(async () => {
+      await result.current.editContact(editedContact);
     });
     expect(result.current.contacts).toContainEqual(editedContact);
   });
@@ -54,13 +54,13 @@ describe('useContacts hook', () => {
     };
 
     const expectedContact = { ...existingContact, id: expect.any(String) };
-    act(() => {
-      result.current.addContact(expectedContact);
+    await act(async () => {
+      await result.current.addContact(expectedContact);
     });
     expect(result.current.contacts).toContainEqual(expectedContact);
 
-    act(() => {
-      result.current.deleteContact(expectedContact.id);
+    await act(async () => {
+      await result.current.deleteContact(expectedContact.id);
     });
     expect(result.current.contacts).not.toContainEqual(expectedContact);
   });
